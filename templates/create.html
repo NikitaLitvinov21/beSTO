@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Створити замовлення</h1>
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="car_number">Номер машини</label>
+            <input type="text" class="form-control" id="car_number" name="car_number" required>
+        </div>
+        <div class="form-group">
+            <label for="car_brand">Марка машини</label>
+            <input type="text" class="form-control" id="car_brand" name="car_brand" required>
+        </div>
+        <div class="form-group">
+            <label for="car_year">Рік випуску</label>
+            <input type="number" class="form-control" id="car_year" name="car_year" required>
+        </div>
+        <div class="form-group">
+            <label for="car_mileage">Пробіг</label>
+            <input type="number" class="form-control" id="car_mileage" name="car_mileage" required>
+        </div>
+        <div class="form-group">
+            <label for="repairs">Поломки</label>
+            <textarea class="form-control" id="repairs" name="repairs" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="cost">Вартість</label>
+            <input type="number" class="form-control" id="cost" name="cost" required>
+        </div>
+        <div class="form-group">
+            <label for="mechanic">Механік</label>
+            <input type="text" class="form-control" id="mechanic" name="mechanic" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Створити</button>
+    </form>
+{% endblock %}

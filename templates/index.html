@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Замовлення</h1>
+
+    {% if completed_orders %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Номер машини</th>
+                    <th>Марка машини</th>
+                    <th>Рік випуску</th>
+                    <th>Пробіг</th>
+                    <th>Поломки</th>
+                    <th>Вартість</th>
+                    <th>Механік</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in completed_orders %}
+                <tr>
+                    <td>{{ order.car_number }}</td>
+                    <td>{{ order.car_brand }}</td>
+                    <td>{{ order.car_year }}</td>
+                    <td>{{ order.car_mileage }}</td>
+                    <td>{{ order.repairs }}</td>
+                    <td>{{ order.cost }}</td>
+                    <td>{{ order.mechanic }}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No completed orders available.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>СТО</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+    <header>
+        <h1>СТО</h1>
+        <nav>
+            <a href="/">Головна</a>
+            <a href="/orders">Замовлення</a>
+            {% if current_user.is_authenticated %}
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/orders">Замовлення</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Вийти</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Увійти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Зареєструватися</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2023 СТО
+    </footer>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
