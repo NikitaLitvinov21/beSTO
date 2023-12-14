@@ -2,7 +2,15 @@
 
 {% block content %}
     <h1>Редагувати замовлення #{{ order.id }}</h1>
-    <form action="" method="post">
+    <form action="{{ url_for('edit_order', order_id=order_id) }}" method="post">
+        <div class="form-group">
+            <label for="status">Статус</label>
+            <select class="form-control" id="status" name="status">
+                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>В очікуванні</option>
+                <option value="in_progress" {% if order.status == 'in_progress' %}selected{% endif %}>В процесі</option>
+                <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Завершено</option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="car_number">Номер машини</label>
             <input type="text" class="form-control" id="car_number" name="car_number" value="{{ order.car_number }}" required>
@@ -31,6 +39,7 @@
             <label for="mechanic">Механік</label>
             <input type="text" class="form-control" id="mechanic" name="mechanic" value="{{ order.mechanic }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Зберегти зміни</button>
+        <button type="submit" class="btn btn-primary" name="edit">Зберегти зміни</button>
+        <button type="submit" class="btn btn-danger" name="delete">Видалити замовлення</button>
     </form>
 {% endblock %}

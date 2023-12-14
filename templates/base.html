@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -6,14 +7,14 @@
 </head>
 <body>
     <header>
-        <h1>СТО</h1>
+        <h1>beSTO</h1>
         <nav>
             <a href="/">Головна</a>
             <a href="/orders">Замовлення</a>
             {% if current_user.is_authenticated %}
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" href="/orders">Замовлення</a>
+                        <a class="nav-link" href="/create">Створити замовлення</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Вийти</a>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Замовлення</h1>
+    <form action="{{ url_for('orders_index') }}" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Номер машини</th>
+                    <th scope="col">Марка машини</th>
+                    <th scope="col">Статус</th>
+                    <th scope="col">Механік</th>
+                    <th scope="col">Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <th scope="row">{{ order.id }}</th>
+                        <td>{{ order.car_number }}</td>
+                        <td>{{ order.car_brand }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.mechanic }}</td>
+                        <td>
+                            <button type="submit" class="btn btn-primary" name="edit" value="{{ order.id }}">Редагувати</button>
+                            <button type="submit" class="btn btn-danger" name="delete" value="{{ order.id }}">Видалити</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+{% endblock %}
