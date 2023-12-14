@@ -21,7 +21,7 @@ class Order(db.Model):
     repairs = db.Column(db.String(255))
     cost = db.Column(db.Float)
     mechanic = db.Column(db.String(20))
-    status = db.Column(db.Enum('pending', 'in_progress', 'completed', name='order_status'))
+    status = db.Column(db.Enum('pending', 'in_progress', 'completed', name='status'))
 
 
 class User(db.Model, UserMixin):
@@ -70,14 +70,12 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        print(f'Debug: Checking password for user {user.email}')
         if user and user.check_password(password):
             login_user(user)
             flash('Успішний вхід!', 'success')
             return redirect(url_for('orders_index'))
         else:
-            flash('Невірний логін або пароль', 'error')  # Flash error message
-            print('Debug: Incorrect login or password')  # Добавьте этот вывод в консоль
+            flash('Невірний логін або пароль', 'error')
 
     return render_template('login.html')
 
@@ -179,6 +177,7 @@ def edit_order(order_id):
         repairs = request.form['repairs']
         cost = request.form['cost']
         mechanic = request.form['mechanic']
+        status = request.form['status']
 
         order.car_number = car_number
         order.car_brand = car_brand
@@ -187,6 +186,7 @@ def edit_order(order_id):
         order.repairs = repairs
         order.cost = cost
         order.mechanic = mechanic
+        order.status = status
         db.session.commit()
 
         return redirect(url_for('orders_index'))
