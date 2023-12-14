@@ -70,14 +70,12 @@ def login():
         email = request.form['email']
         password = request.form['password']
         user = User.query.filter_by(email=email).first()
-        print(f'Debug: Checking password for user {user.email}')
         if user and user.check_password(password):
             login_user(user)
             flash('Успішний вхід!', 'success')
             return redirect(url_for('orders_index'))
         else:
-            flash('Невірний логін або пароль', 'error')  # Flash error message
-            print('Debug: Incorrect login or password')  # Добавьте этот вывод в консоль
+            flash('Невірний логін або пароль', 'error')
 
     return render_template('login.html')
 
